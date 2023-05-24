@@ -1,9 +1,13 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.*;
-import java.util.*;
+import java.util.LinkedList;
 
 class ToDoListApp {
     private LinkedList<String> tasks;
@@ -224,39 +228,170 @@ class ToDoListApp {
         public void createAndShowGUI() {
             frame = new JFrame("To-Do List App");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1200, 800);
+
+            ImageIcon icon = new ImageIcon("C:\\Users\\Carter\\IdeaProjects\\ToDoList\\src\\favicon.png");
+            frame.setIconImage(icon.getImage());
 
             JPanel panel = new JPanel(new BorderLayout());
 
-            JPanel buttonPanel = new JPanel(new GridLayout(6, 1));
-            deleteButton = new JButton("Delete");
-            deleteButton.addActionListener(this);
+            Border outline = new LineBorder(Color.BLACK, 2);
+
+            Color initialColor = Color.decode("#ec6900");
+            Color hoverColor = Color.decode("#804028");
+
+            int animationDuration = 500; // Animation duration in milliseconds
+            int animationSteps = 60; // Number of animation steps
+            int delay = animationDuration / animationSteps;
+            final int[] stepCount = {0};
+
+            JPanel buttonPanel = new JPanel(new GridLayout(8, 1));
             editButton = new JButton("Edit");
             editButton.addActionListener(this);
+            editButton.setBackground(Color.decode("#ec6900"));
+            editButton.setForeground(Color.WHITE);
+            editButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    animateButtonColor(editButton, initialColor, hoverColor);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    animateButtonColor(editButton, hoverColor, initialColor);
+                }
+            });
+            editButton.setBorder(outline);
+
+            deleteButton = new JButton("Delete");
+            deleteButton.addActionListener(this);
+            deleteButton.setBackground(Color.decode("#ec6900"));
+            deleteButton.setForeground(Color.WHITE);
+            deleteButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    animateButtonColor(deleteButton, initialColor, hoverColor);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    animateButtonColor(deleteButton, hoverColor, initialColor);
+                }
+            });
+            deleteButton.setBorder(outline);
+
             completeButton = new JButton("Complete");
             completeButton.addActionListener(this);
+            completeButton.setBackground(Color.decode("#ec6900"));
+            completeButton.setForeground(Color.WHITE);
+            completeButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    animateButtonColor(completeButton, initialColor, hoverColor);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    animateButtonColor(completeButton, hoverColor, initialColor);
+                }
+            });
+            completeButton.setBorder(outline);
+
             unCompleteButton = new JButton("Un-Complete");
             unCompleteButton.addActionListener(this);
+            unCompleteButton.setBackground(Color.decode("#ec6900"));
+            unCompleteButton.setForeground(Color.WHITE);
+            unCompleteButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    animateButtonColor(unCompleteButton, initialColor, hoverColor);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    animateButtonColor(unCompleteButton, hoverColor, initialColor);
+                }
+            });
+            unCompleteButton.setBorder(outline);
+
             moveUpButton = new JButton("Move Up");
             moveUpButton.addActionListener(this);
+            moveUpButton.setBackground(Color.decode("#ec6900"));
+            moveUpButton.setForeground(Color.WHITE);
+            moveUpButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    animateButtonColor(moveUpButton, initialColor, hoverColor);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    animateButtonColor(moveUpButton, hoverColor, initialColor);
+                }
+            });
+            moveUpButton.setBorder(outline);
+
             moveDownButton = new JButton("Move Down");
             moveDownButton.addActionListener(this);
+            moveDownButton.setBackground(Color.decode("#ec6900"));
+            moveDownButton.setForeground(Color.WHITE);
+            moveDownButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    animateButtonColor(moveDownButton, initialColor, hoverColor);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    animateButtonColor(moveDownButton, hoverColor, initialColor);
+                }
+            });
+            moveDownButton.setBorder(outline);
+
             moveToTopButton = new JButton("Move to Top");
             moveToTopButton.addActionListener(this);
+            moveToTopButton.setBackground(Color.decode("#ec6900"));
+            moveToTopButton.setForeground(Color.WHITE);
+            moveToTopButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    animateButtonColor(moveToTopButton, initialColor, hoverColor);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    animateButtonColor(moveToTopButton, hoverColor, initialColor);
+                }
+            });
+            moveToTopButton.setBorder(outline);
+
             moveToBottomButton = new JButton("Move to Bottom");
             moveToBottomButton.addActionListener(this);
-            buttonPanel.add(deleteButton);
+            moveToBottomButton.setBackground(Color.decode("#ec6900"));
+            moveToBottomButton.setForeground(Color.WHITE);
+            moveToBottomButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    animateButtonColor(moveToBottomButton, initialColor, hoverColor);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    animateButtonColor(moveToBottomButton, hoverColor, initialColor);
+                }
+            });
+            moveToBottomButton.setBorder(outline);
+
             buttonPanel.add(editButton);
+            buttonPanel.add(deleteButton);
             buttonPanel.add(completeButton);
             buttonPanel.add(unCompleteButton);
             buttonPanel.add(moveUpButton);
             buttonPanel.add(moveDownButton);
             buttonPanel.add(moveToTopButton);
             buttonPanel.add(moveToBottomButton);
+            buttonPanel.setBackground(Color.decode("#984303"));
             panel.add(buttonPanel, BorderLayout.WEST);
-
-            titleLabel = new JLabel("To-Do List");
-            titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
-            panel.add(titleLabel, BorderLayout.NORTH);
 
             taskTypeComboBox = new JComboBox<>();
             taskTypeComboBox.addItem("Uncompleted Tasks");
@@ -268,20 +403,70 @@ class ToDoListApp {
             taskListModel = new DefaultListModel<>();
             taskList = new JList<>(taskListModel);
             taskList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            taskList.setBackground(Color.decode("#c24902"));
+            taskList.setForeground(Color.WHITE);
             taskListScrollPane = new JScrollPane(taskList);
+            taskListScrollPane.setBackground(Color.decode("#c24902"));
+            taskListScrollPane.setForeground(Color.WHITE);
+            taskListScrollPane.setBorder(outline);
             panel.add(taskListScrollPane, BorderLayout.CENTER);
 
             addButton = new JButton("Add Task");
             addButton.addActionListener(this);
-            panel.add(addButton, BorderLayout.EAST);
+            addButton.setBackground(Color.decode("#FF7F50"));
+            addButton.setForeground(Color.WHITE);
+            addButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    animateButtonColor(addButton, Color.decode("#FF7F50"), hoverColor);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    animateButtonColor(addButton, hoverColor, Color.decode("#FF7F50"));
+                }
+            });
+            addButton.setBorder(outline);
+
+            panel.add(addButton, BorderLayout.NORTH);
 
             frame.getContentPane().add(panel);
-            frame.pack();
             frame.setVisible(true);
 
             loadTasks();
             loadCompletedTasks();
             updateTaskList();
+        }
+
+        private static void animateButtonColor(JButton button, Color startColor, Color endColor) {
+            int animationDuration = 200; // Animation duration in milliseconds
+            int animationSteps = 15; // Number of animation steps
+            int delay = animationDuration / animationSteps;
+            float stepSize = 1f / animationSteps;
+            final float[] progress = {0f};
+
+            javax.swing.Timer timer = new javax.swing.Timer(delay, null);
+            timer.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    progress[0] += stepSize;
+                    if (progress[0] > 1f) {
+                        progress[0] = 1f;
+                        timer.stop();
+                    }
+                    Color color = interpolateColors(startColor, endColor, progress[0]);
+                    button.setBackground(color);
+                }
+            });
+
+            timer.start();
+        }
+
+        private static Color interpolateColors(Color color1, Color color2, float progress) {
+            int r = (int) (color1.getRed() * (1 - progress) + color2.getRed() * progress);
+            int g = (int) (color1.getGreen() * (1 - progress) + color2.getGreen() * progress);
+            int b = (int) (color1.getBlue() * (1 - progress) + color2.getBlue() * progress);
+            return new Color(r, g, b);
         }
 
         public void updateTaskList() {
